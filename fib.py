@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
+
 def fib(n):
+    if n <= 0:
+        return []
     if n == 1:
-        return 0
-    elif n == 2:
-        return 1
-    return fib(n - 1) + fib(n - 2)
+        return [0]
+    result = [0, 1]
+    for i in range(2, n):
+        result.append(result[i-1] + result[i-2])
+    return result
+
 def main():
     try:
-        n = int(input("введите номер числа Фибоначчи: "))
+        n = int(input("Введите количество чисел Фибоначчи: "))
         if n <= 0:
             print("Пожалуйста, введите положительное число")
             return
-        result = fib(n)
-        print(f"fib({n}) = {result}")
+        numbers = fib(n)
+        for num in numbers:
+            print(num)
     except ValueError:
         print("Пожалуйста, введите целое число")
 if __name__ == "__main__":
